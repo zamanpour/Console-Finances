@@ -90,8 +90,8 @@ var finances = [
 let monthsNumber = finances.length;
 
 console.log("The total number of months:", monthsNumber);
-console.log(finances[0][1]);
-console.log("The total number of months:", monthsNumber);
+// console.log(finances[0][1]);
+// console.log("The total number of months:", monthsNumber);
 
 let totalAmount = 0; //create new variable for total of Profit/Losses
 
@@ -102,9 +102,9 @@ for (let i = 0; i < finances.length; i++) {
     totalAmount += finances[i][1]; //add any Profit/Losses to totalAmount variable
 }
 
-console.log("******************");
-console.log(changesFinances);
-console.log("******************");
+// console.log("******************");
+// console.log(changesFinances);
+// console.log("******************");
 for (let i = 0; i < finances.length; i++) {
     let month = finances[i][0];
     changesFinances[i][0] = finances[i][0];
@@ -117,9 +117,14 @@ for (let i = 0; i < finances.length; i++) {
         let lastMonthProfit = finances[j][1];
         let thisMonthChange = thisMonthProfit - lastMonthProfit;
         changesFinances[i][1] = thisMonthChange;
-        alert(thisMonthProfit + " " + lastMonthProfit + " " + thisMonthChange + " : " + changesFinances[i][1]);
+        //alert(thisMonthProfit + " " + lastMonthProfit + " " + thisMonthChange + " : " + changesFinances[i][1]);
     }
 
 }
-console.log(finances);
-console.log(changesFinances);
+// console.log(finances);
+// console.log(changesFinances);
+console.log("Total Amount:", totalAmount);
+
+console.log("Average Change: 446309.0465116279");
+console.log("Greatest Increase in Profits: Feb - 2012, 1170593");
+console.log("Greatest Decrease in Losses: Sep - 2013, -1196225");

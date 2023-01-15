@@ -90,41 +90,53 @@ var finances = [
 let monthsNumber = finances.length;
 
 console.log("The total number of months:", monthsNumber);
-// console.log(finances[0][1]);
-// console.log("The total number of months:", monthsNumber);
 
 let totalAmount = 0; //create new variable for total of Profit/Losses
 
-// var changesFinances = finances; //create new array for changes  of Profit/Losses
-var changesFinances = [[], []];
+var changesFinances = [[], []]; //create new array for changes
 for (let i = 0; i < finances.length; i++) {
-    changesFinances[i] = [];
+    changesFinances[i] = []; //create empty array in changesFinances as much as finances
     totalAmount += finances[i][1]; //add any Profit/Losses to totalAmount variable
 }
 
-// console.log("******************");
-// console.log(changesFinances);
-// console.log("******************");
 for (let i = 0; i < finances.length; i++) {
     let month = finances[i][0];
     changesFinances[i][0] = finances[i][0];
 
-    if (i === 0) {
+    if (i === 0) { //for the first month changes same as first month's number
         changesFinances[0][1] = finances[0][1];
-    } else {
+    } else { //for others changes equal the nember of this month mineus number of previuse month
         let j = i - 1;
         let thisMonthProfit = finances[i][1];
         let lastMonthProfit = finances[j][1];
         let thisMonthChange = thisMonthProfit - lastMonthProfit;
         changesFinances[i][1] = thisMonthChange;
-        //alert(thisMonthProfit + " " + lastMonthProfit + " " + thisMonthChange + " : " + changesFinances[i][1]);
     }
 
 }
-// console.log(finances);
-// console.log(changesFinances);
+
+
+changesFinances.sort(compareSecondColumn);
+
+function compareSecondColumn(a, b) { //function for sorting 2d array
+    if (a[1] === b[1]) {
+        return 0;
+    }
+    else {
+        return (a[1] < b[1]) ? -1 : 1;
+    }
+}
+
+
+
+let totalAmountChanges = 0; //create new variable for total of Profit/Losses
+for (let i = 0; i < changesFinances.length; i++) {
+    totalAmountChanges += changesFinances[i][1]; //add any Profit/Losses to totalAmount variable
+}
+
+
 console.log("Total Amount:", totalAmount);
 
-console.log("Average Change: 446309.0465116279");
-console.log("Greatest Increase in Profits: Feb - 2012, 1170593");
-console.log("Greatest Decrease in Losses: Sep - 2013, -1196225");
+console.log("Average Change:", totalAmountChanges / changesFinances.length);
+console.log("Greatest Increase in Profits:", changesFinances[changesFinances.length - 1]);
+console.log("Greatest Decrease in Losses:", changesFinances[0]);
